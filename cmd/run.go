@@ -44,12 +44,13 @@ to quickly create a Cobra application.`,
 		if err != nil {
 			log.Fatal(err)
 		}
+
 		b := dev.New(d)
 		err = b.Init()
 		if err != nil {
-			log.Fatal(err)
+			log.Println(err)
 		}
-		t, h, p, _ := b.EnvData()
+		t, p, h, _ := b.EnvData()
 		if units == "english" {
 			t = toFahrenheit(t)
 			p = toMercury(p)

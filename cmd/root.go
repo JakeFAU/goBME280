@@ -43,7 +43,7 @@ func init() {
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.goBME280.yaml)")
 	rootCmd.PersistentFlags().StringVarP(&feedPrefix, "prefix", "p", "", "The feed prefix")
 	rootCmd.PersistentFlags().StringVarP(&units, "units", "u", "english", "The units to use")
-	rootCmd.PersistentFlags().IntVarP(&address, "address", "a", 77, "The address of the BME sensor")
+	rootCmd.PersistentFlags().IntVarP(&address, "address", "a", 0x77, "The address of the BME sensor")
 	rootCmd.PersistentFlags().StringVarP(&baseURL, "url", "b", "https://io.adafruit.com/", "The base URL")
 }
 

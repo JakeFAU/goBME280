@@ -1,18 +1,3 @@
-/*
-Copyright © 2021 NAME HERE <EMAIL ADDRESS>
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
 package cmd
 
 import (
@@ -58,7 +43,7 @@ func init() {
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.goBME280.yaml)")
 	rootCmd.PersistentFlags().StringVarP(&feedPrefix, "prefix", "p", "", "The feed prefix")
 	rootCmd.PersistentFlags().StringVarP(&units, "units", "u", "english", "The units to use")
-	rootCmd.PersistentFlags().IntVarP(&address, "address", "a", 0x77, "The address of the BME sensor")
+	rootCmd.PersistentFlags().IntVarP(&address, "address", "a", 77, "The address of the BME sensor")
 	rootCmd.PersistentFlags().StringVarP(&baseURL, "url", "b", "https://io.adafruit.com/", "The base URL")
 }
 

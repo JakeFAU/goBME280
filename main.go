@@ -1,5 +1,5 @@
 /*
-Copyright © 2021 NAME HERE <EMAIL ADDRESS>
+Copyright © 2021 Jacob Bourne jbourne2021@fau.edu
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@ limitations under the License.
 */
 package main
 
-import "github.com/JakeFau/goBME280/cmd"
+import "github.com/jakefau/goBME280/cmd"
 
 func main() {
-  cmd.Execute()
+	cmd.Execute()
 }

@@ -1,18 +1,3 @@
-/*
-Copyright © 2021 NAME HERE <EMAIL ADDRESS>
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
 package cmd
 
 import (
@@ -48,11 +33,14 @@ to quickly create a Cobra application.`,
 
 		//get the feeds
 		tempFeed := getFeed(fmt.Sprintf("%v.temperature", feedPrefix), *app)
-		humidFeed := getFeed(fmt.Sprintf("%v.humidy", feedPrefix), *app)
+		humidFeed := getFeed(fmt.Sprintf("%v.humidity", feedPrefix), *app)
 		pressureFeed := getFeed(fmt.Sprintf("%v.pressure", feedPrefix), *app)
+
+		log.Println("Getting Data")
 
 		//get the data
 		d, err := i2c.Open(&i2c.Devfs{Dev: "/dev/i2c-1"}, address)
+
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -62,9 +50,6 @@ to quickly create a Cobra application.`,
 			log.Fatal(err)
 		}
 		t, h, p, _ := b.EnvData()
-		t = convert64(t)
-		h = convert64(h)
-		p = convert64(p)
 		if units == "english" {
 			t = toFahrenheit(t)
 			p = toMercury(p)
@@ -72,11 +57,11 @@ to quickly create a Cobra application.`,
 
 		//now set the feeds
 		app.SetFeed(tempFeed)
-		app.Data.Create(&aio.Data{Value: t})
+		app.Data.Create(&aio.Data{Value: convert64(t)})
 		app.SetFeed(humidFeed)
-		app.Data.Create(&aio.Data{Value: h})
+		app.Data.Create(&aio.Data{Value: convert64(h)})
 		app.SetFeed(pressureFeed)
-		app.Data.Create(&aio.Data{Value: p})
+		app.Data.Create(&aio.Data{Value: convert64(p)})
 		log.Printf("Temp: %fF, Press: %f, Hum: %f%%\n", t, p, h)
 
 	},
